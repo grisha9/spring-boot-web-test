@@ -1,0 +1,22 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: grisha
+  Date: 16.05.17
+  Time: 13:55
+  To change this template use File | Settings | File Templates.
+-->
+
+
+<div id="menu" xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:spring="http://www.springframework.org/tags"
+          >
+    <jsp:directive.page contentType="text/html; charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <spring:message code="app.menu.add" var="addContact"/>
+    <spring:url value="/contacts?form" var="menuAddContactUrl"/>
+
+    <h3><spring:message code="app.menu"/></h3>
+    <a href="${menuAddContactUrl}"><spring:message code="app.menu.add"/></a>
+</div>
