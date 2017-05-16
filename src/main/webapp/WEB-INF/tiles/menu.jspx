@@ -15,8 +15,18 @@
     <jsp:output omit-xml-declaration="yes"/>
 
     <spring:message code="app.menu.add" var="addContact"/>
-    <spring:url value="/contacts?form" var="menuAddContactUrl"/>
+    <spring:url value="/contacts/?form" var="menuAddContactUrl"/>
 
     <h3><spring:message code="app.menu"/></h3>
-    <a href="${menuAddContactUrl}"><spring:message code="app.menu.add"/></a>
+    <table>
+        <tr>
+            <td>
+                <a href="${menuAddContactUrl}"><spring:message code="app.menu.add"/></a>
+            </td>
+            <td>
+                <a href="/contacts"><spring:message code="app.menu.list"/></a>
+            </td>
+        </tr>
+    </table>
+
 </div>

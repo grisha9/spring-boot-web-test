@@ -1,0 +1,68 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: grisha
+  Date: 02.04.17
+  Time: 12:14
+  To change this template use File | Settings | File Templates.
+-->
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:c="http://java.sun.com/jsp/jstl/core"
+     xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form">
+    <jsp:directive.page contentType="text/html; charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <h1><spring:message code="contact.title"/></h1>
+
+    <div id="contactUpdate">
+        <spring:message code="contact.edit" var="editTitle"/>
+        <spring:message code="contact.new" var="newTitle"/>
+
+        <h1><spring:eval expression="contact.id == null?newTitle:editTitle"/></h1>
+        <form:form modelAttribute="contact" id="contactUpdateForm" method="post">
+            <c:if test="${not empty message}">
+                <div id="message">${message}</div>
+            </c:if>
+
+            <form:label path="firstName">
+                <spring:message code="contacts.firstname"/>
+            </form:label>
+            <form:input path="firstName"/>
+            <div>
+                <form:errors path="firstName" cssClass="error"/>
+            </div>
+            <p/>
+
+            <form:label path="lastName">
+                <spring:message code="contacts.lastname"/>
+            </form:label>
+            <form:input path="lastName"/>
+            <div>
+                <form:errors path="lastName" cssClass="error"/>
+            </div>
+            <p/>
+
+            <form:label path="birthDate">
+                <spring:message code="contacts.birthdate"/>
+            </form:label>
+            <form:input path="birthDate"/>
+            <div>
+                <form:errors path="birthDate" cssClass="error"/>
+            </div>
+            <p/>
+
+            <form:label path="description">
+                <spring:message code="contacts.description"/>
+            </form:label>
+            <form:textarea path="description" cols="60" rows="8"/>
+            <div>
+                <form:errors path="description" cssClass="error"/>
+            </div>
+            <p/>
+
+            <form:hidden path="version"/>
+
+            <button type="submit"><spring:message code="contact.save"/> </button>
+            <button type="reset" ><spring:message code="contact.reset"/></button>
+        </form:form>
+    </div>
+</div>

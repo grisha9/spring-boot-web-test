@@ -25,7 +25,7 @@
             <tbody>
             <c:forEach items="${contacts}" var="contact">
                 <tr>
-                    <td>${contact.firstName}</td>
+                    <td><a href="/contacts/${contact.id}">${contact.firstName}</a></td>
                     <td>${contact.lastName}</td>
                     <td>${contact.birthDate}</td>
                 </tr>

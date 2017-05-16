@@ -17,5 +17,11 @@
         <put-attribute name="body" value="/WEB-INF/tiles/contacts.jspx"/>
     </definition>
 
+    <definition name="contacts/show" extends="default">
+        <put-attribute name="body" value="/WEB-INF/tiles/contact.jspx"/>
+    </definition>
 
+    <definition name="contacts/update" extends="default">
+        <put-attribute name="body" value="/WEB-INF/tiles/contactEdit.jspx"/>
+    </definition>
 </tiles-definitions>

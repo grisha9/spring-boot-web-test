@@ -1,9 +1,11 @@
 package com.example.domain.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Created by grisha on 25.02.17.
@@ -40,6 +42,8 @@ public class Contact implements Serializable {
         this.version = version;
     }
 
+    @NotEmpty
+    @Size(min = 3, max = 20)
     @Column(name = "first_name")
     public String getFirstName() {
         return firstName;
@@ -49,6 +53,8 @@ public class Contact implements Serializable {
         this.firstName = firstName;
     }
 
+    @NotEmpty
+    @Size(min = 3, max = 20)
     @Column(name = "last_name")
     public String getLastName() {
         return lastName;
