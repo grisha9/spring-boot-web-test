@@ -11,6 +11,16 @@
      xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form">
     <jsp:directive.page contentType="text/html; charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#birthDate').datepicker({
+                dateFormat: 'mm/dd/y',
+                changeYear: true
+            });
+        });
+    </script>
+
     <h1><spring:message code="contact.title"/></h1>
 
     <div id="contactUpdate">
@@ -18,7 +28,7 @@
         <spring:message code="contact.new" var="newTitle"/>
 
         <h1><spring:eval expression="contact.id == null?newTitle:editTitle"/></h1>
-        <form:form modelAttribute="contact" id="contactUpdateForm" method="post">
+        <form:form modelAttribute="contact" id="contactUpdateForm" method="post" enctype="multipart/form-data">
             <c:if test="${not empty message}">
                 <div id="message">${message}</div>
             </c:if>
@@ -27,6 +37,7 @@
                 <spring:message code="contacts.firstname"/>
             </form:label>
             <form:input path="firstName"/>
+
             <div>
                 <form:errors path="firstName" cssClass="error"/>
             </div>
@@ -36,6 +47,7 @@
                 <spring:message code="contacts.lastname"/>
             </form:label>
             <form:input path="lastName"/>
+
             <div>
                 <form:errors path="lastName" cssClass="error"/>
             </div>
@@ -44,7 +56,8 @@
             <form:label path="birthDate">
                 <spring:message code="contacts.birthdate"/>
             </form:label>
-            <form:input path="birthDate"/>
+            <form:input id="birthDate" path="birthDate"/>
+
             <div>
                 <form:errors path="birthDate" cssClass="error"/>
             </div>
@@ -59,10 +72,20 @@
             </div>
             <p/>
 
+            <label for="file">
+                <spring:message code="contacts.file"/>
+            </label>
+            <input name="file" type="file"/>
+            <p/>
+
             <form:hidden path="version"/>
 
-            <button type="submit"><spring:message code="contact.save"/> </button>
-            <button type="reset" ><spring:message code="contact.reset"/></button>
+            <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text"><spring:message code="contact.save"/></span>
+            </button>
+            <button type="reset" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+                <span class="ui-button-text"><spring:message code="contact.reset"/></span>
+            </button>
         </form:form>
     </div>
 </div>

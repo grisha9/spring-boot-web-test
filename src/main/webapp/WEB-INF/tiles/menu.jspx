@@ -8,9 +8,9 @@
 
 
 <div id="menu" xmlns:jsp="http://java.sun.com/JSP/Page"
-          xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:spring="http://www.springframework.org/tags"
-          >
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sec="http://www.springframework.org/security/tags">
     <jsp:directive.page contentType="text/html; charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
 
@@ -21,12 +21,37 @@
     <table>
         <tr>
             <td>
-                <a href="${menuAddContactUrl}"><spring:message code="app.menu.add"/></a>
+                <sec:authorize access="hasRole('ADD')">
+                    <a href="${menuAddContactUrl}"><spring:message code="app.menu.add"/></a>
+                </sec:authorize>
             </td>
             <td>
                 <a href="/contacts"><spring:message code="app.menu.list"/></a>
             </td>
         </tr>
     </table>
-
+    <spring:url value="/j_spring_security_check" var="loginUrl"/>
+    <sec:authorize access="isAnonymous()">
+        <div id="login">
+            <form action="${loginUrl}" method="post">
+                <table>
+                    <tr>
+                        <td>name</td>
+                        <td><input type="text" name="username"/></td>
+                    </tr>
+                    <tr>
+                        <td>password</td>
+                        <td><input type="text" name="password"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input name="submit" type="submit" value="login"/>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" name="${_csrf.parameterName}"
+                       value="${_csrf.token}" />
+            </form>
+        </div>
+    </sec:authorize>
 </div>

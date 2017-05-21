@@ -8,11 +8,21 @@
 
 
 <div id="header" xmlns:jsp="http://java.sun.com/JSP/Page"
-          xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:spring="http://www.springframework.org/tags"          >
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:spring="http://www.springframework.org/tags"
+     xmlns:sec="http://www.springframework.org/security/tags">
     <jsp:directive.page contentType="text/html; charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <div id="appname">
         <h1><spring:message code="header.title"/></h1>
+    </div>
+
+    <div id="userinfo">
+
+        <sec:authorize access="isAuthenticated()">
+            <sec:authentication property="principal.username"/>
+            <br/>
+            <a href="/j_spring_security_logout">logout</a>
+        </sec:authorize>
     </div>
 </div>

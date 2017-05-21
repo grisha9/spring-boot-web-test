@@ -1,0 +1,55 @@
+<!--
+  Created by IntelliJ IDEA.
+  User: grisha
+  Date: 02.04.17
+  Time: 12:14
+  To change this template use File | Settings | File Templates.
+-->
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:spring="http://www.springframework.org/tags">
+    <jsp:directive.page contentType="text/html; charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#list').jqGrid({
+                url:'/contacts/listgrid',
+                dataType: 'json',
+                mtype: 'GET',
+                colNames: ['name', 'last'],
+                colModel: [
+                    {name: 'firstName', index: 'firstName', width: 150},
+                    {name: 'lastName', index: 'lastName', width: 150}
+
+                ],
+                jsonReader:{
+                    root: "data",
+                    page: "currentPage",
+                    total: "totalPages",
+                    records: "totalRecords",
+                    id: "id"
+                },
+                pager: '#pager',
+                rowNum: 10,
+                rowList: [10,20,30],
+                sortname: 'firstName',
+                sortorder: "asc",
+                viewrecords: true,
+                gridview:true,
+                height:250,
+                width: 500,
+                caption: 'contact-list',
+                onSelectRow: function(id) {document.location.href="/contacts/" + id}
+            })
+        })
+    </script>
+
+    <h1><spring:message code="contacts.title"/></h1>
+    <div>
+        <table id="list">
+            <tr><td/></tr>
+        </table>
+    </div>
+    <div id="pager"></div>
+</div>

@@ -24,6 +24,14 @@
         <spring:url value="/${app_css}" var="app_css_url"/>
         <link rel="stylesheet" type="text/css" media="screen" href="${app_css_url}"/>-->
 
+        <script src="/webjars/jquery-ui/1.9.2/js/jquery-1.8.3.js" type="text/javascript"><jsp:text/></script>
+        <script src="/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js" type="text/javascript"><jsp:text/></script>
+        <script src="/webjars/jqgrid/4.7.0/js/i18n/grid.locale-en.js" type="text/javascript"><jsp:text/></script>
+        <script src="/js/jquery.jqGrid.min.js" type="text/javascript"><jsp:text/></script>
+
+        <link rel="stylesheet" type="text/css" media="screen" href="/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="/webjars/jqgrid/4.7.0/css/ui.jqgrid.css"/>
+
         <c:set var="userLocale">
             <c:set var="plocale">${pageContext.response.locale}</c:set>
             <c:out value="${fn:replace(plocale, '_', '-')}" default="en"/>
